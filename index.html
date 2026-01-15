@@ -9,12 +9,12 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
-      background: radial-gradient(circle at 20% 20%, #1c0b4f, #0f0f14);
-      color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
+      color: #fff;
       display: flex;
       flex-direction: column;
+      background: url('7bf3329e-1a3c-4c95-84ae-ff8fc651faa2.png') center/cover no-repeat;
     }
 
     header {
@@ -24,24 +24,21 @@
       width: 100%;
       padding: 18px 32px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      background: rgba(20, 20, 35, 0.7);
+      align-items: center;
+      background: rgba(20,20,35,0.6);
       backdrop-filter: blur(16px);
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .title {
-      font-size: 22px;
+      font-size: 26px;
       font-weight: 700;
-      letter-spacing: 1px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
       color: #b78cff;
       text-shadow: 0 0 12px #b78cffaa, 0 0 24px #8c5aff55;
+      text-align: center;
+      flex: 1;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
 
@@ -49,6 +46,7 @@
 
     .dropdown {
       position: relative;
+      z-index: 1001;
     }
 
     .dropdown-btn {
@@ -106,25 +104,21 @@
     }
 
     main {
-      padding-top: 120px;
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1;
-      animation: fadeInBg 1s ease forwards;
     }
 
     .panel {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.6);
       border-radius: 22px;
-      width: 90%;
-      max-width: 1000px;
-      min-height: 480px;
       padding: 40px;
       box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-      animation: fadeUp 0.9s ease forwards;
       backdrop-filter: blur(6px);
+      max-width: 900px;
+      width: 90%;
+      animation: fadeUp 0.9s ease forwards;
     }
 
     .panel-grid {
@@ -155,27 +149,16 @@
       text-shadow: 0 0 12px #b78cffaa, 0 0 24px #8c5aff55;
     }
 
-    .card h3 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #fff;
-    }
+    .card h3 { font-size: 18px; font-weight: 600; color: #fff; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    @keyframes fadeInBg {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
   </style>
 </head>
 <body>
   <header>
-    <div class="title" onclick="window.location.href='/'"><i class="fa-solid fa-list"></i> Tap Sim Value</div>
-
     <div class="dropdown">
       <button class="dropdown-btn" id="dropdownBtn"><i class="fa-solid fa-bars"></i> Menu</button>
       <div class="dropdown-menu" id="dropdownMenu">
@@ -185,6 +168,8 @@
         <div data-link="/mythics"><i class="fa-solid fa-gem"></i> Mythics</div>
       </div>
     </div>
+
+    <div class="title" onclick="window.location.href='/'"><i class="fa-solid fa-list"></i> Tap Sim Value</div>
   </header>
 
   <main>
@@ -201,7 +186,6 @@
   <script>
     const btn = document.getElementById('dropdownBtn')
     const menu = document.getElementById('dropdownMenu')
-    const grid = document.getElementById('grid')
 
     btn.addEventListener('click', () => menu.classList.toggle('active'))
 
