@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Modern Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f14, #141421);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 15, 20, 0.6);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background: rgba(20, 20, 35, 0.95);
+      border-radius: 14px;
+      padding: 10px;
+      min-width: 180px;
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .dropdown-menu div {
+      padding: 12px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.25s ease;
+    }
+
+    .dropdown-menu div:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    main {
+      padding-top: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .content {
+      max-width: 700px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .content h1 {
+      font-size: 52px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 18px;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #7c7cff, #b37cff);
+      color: #000;
+      font-weight: 600;
+      animation: pulse 2.5s infinite;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(180, 120, 255, 0.5); }
+      70% { box-shadow: 0 0 0 20px rgba(180, 120, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(180, 120, 255, 0); }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="dropdown">
+      <button class="dropdown-btn" id="dropdownBtn">Select</button>
+      <div class="dropdown-menu" id="dropdownMenu">
+        <div data-type="Secret 1">Secret 1</div>
+        <div data-type="Secret 2">Secret 2</div>
+        <div data-type="Exclusive">Exclusive</div>
+        <div data-type="Mythics">Mythics</div>
+      </div>
+    </div>
+    <div class="logo">PROJECT</div>
+  </header>
+
+  <main>
+    <div class="content" id="content">
+      <h1>Welcome</h1>
+      <p>Select a category from the top-left dropdown to reveal exclusive content.</p>
+      <div class="tag">Modern • Clean • Animated</div>
+    </div>
+  </main>
+
+  <footer>Built for Vercel • HTML / CSS / JS</footer>
+
+  <script>
+    const btn = document.getElementById('dropdownBtn')
+    const menu = document.getElementById('dropdownMenu')
+    const content = document.getElementById('content')
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('active')
+    })
+
+    document.querySelectorAll('.dropdown-menu div').forEach(item => {
+      item.addEventListener('click', () => {
+        const type = item.getAttribute('data-type')
+        btn.textContent = type
+        menu.classList.remove('active')
+
+        content.innerHTML = `
+          <h1>${type}</h1>
+          <p>This section is dedicated to <strong>${type}</strong>. Smooth animations, modern layout, and clean UI.</p>
+          <div class="tag">${type}</div>
+        `
+      })
+    })
+
+    window.addEventListener('click', e => {
+      if (!e.target.closest('.dropdown')) {
+        menu.classList.remove('active')
+      }
+    })
+  </script>
+</body>
+</html>
 
