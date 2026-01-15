@@ -123,34 +123,44 @@
     }
 
     .panel-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      display: flex;
+      flex-direction: column;
       gap: 24px;
     }
 
     .card {
-      background: linear-gradient(145deg, #2a0f50, #1b0b3c);
+      background: rgba(30, 20, 60, 0.85);
       border-radius: 18px;
       padding: 28px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      cursor: default;
       border: 1px solid rgba(255,255,255,0.1);
     }
 
     .card:hover {
-      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+      transform: translateY(-6px);
       box-shadow: 0 30px 60px rgba(183,140,255,0.5), 0 0 24px rgba(183,140,255,0.3);
     }
 
-    .card i {
-      font-size: 32px;
-      margin-bottom: 14px;
-      color: #b78cff;
-      text-shadow: 0 0 12px #b78cffaa, 0 0 24px #8c5aff55;
+    .card img {
+      max-width: 100%;
+      border-radius: 14px;
+      margin-bottom: 20px;
     }
 
-    .card h3 { font-size: 18px; font-weight: 600; color: #fff; }
+    .card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #ddd;
+    }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -174,12 +184,22 @@
   </header>
 
   <main>
-    <div class="panel" id="panel">
-      <div class="panel-grid" id="grid">
-        <div class="card"><i class="fa-solid fa-lock"></i><h3>Secret Items</h3></div>
-        <div class="card"><i class="fa-solid fa-star"></i><h3>Exclusive Items</h3></div>
-        <div class="card"><i class="fa-solid fa-gem"></i><h3>Mythic Items</h3></div>
-        <div class="card"><i class="fa-solid fa-fire"></i><h3>High Demand</h3></div>
+    <div class="panel">
+      <div class="panel-grid">
+        <div class="card">
+          <img src="https://i.imgur.com/6gBgKD7.png" alt="Update Image">
+          <h3>⚡ List Last Updated - 14/01/26</h3>
+          <p>
+            Most Recent Game Update: 10/12/24<br>
+            Space World✨<br>
+            2 New Areas🔮<br>
+            Void Spin Wheel🎈<br>
+            New Exclusives🛒<br>
+            3+ New Secret Pets🦖<br>
+            4 NEW EGGS🥚!<br>
+            35+ NEW PETS 🐾!
+          </p>
+        </div>
       </div>
     </div>
   </main>
