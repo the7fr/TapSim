@@ -1,326 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tap Sim Value List</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Roblox Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
-      min-height: 100vh;
-      overflow-x: hidden;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      background: #000;
-      position: relative;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 18px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(20,20,35,0.6);
-      backdrop-filter: blur(16px);
-      z-index: 1000;
-    }
-
-    .title {
-      font-size: 26px;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 0 12px #b78cffaa, 0 0 24px #8c5aff55;
-      text-align: center;
-      flex: 1;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .title:hover { text-shadow: 0 0 24px #fff, 0 0 48px #8c5aff; }
-
-    .dropdown {
-      position: relative;
-      z-index: 1001;
-    }
-
-    .dropdown-btn {
-      background: linear-gradient(135deg, #7f5aff88, #b78cff88);
-      border: none;
-      padding: 10px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.25s ease;
-      box-shadow: 0 0 12px #b78cff88, 0 0 24px #7f5aff55;
-    }
-
-    .dropdown-btn:hover { transform: scale(1.08); }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 120%;
-      left: 0;
-      background: rgba(30, 20, 60, 0.95);
-      border-radius: 14px;
-      padding: 12px;
-      min-width: 180px;
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-      transition: all 0.25s ease;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    }
-
-    .dropdown-menu.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .dropdown-menu div {
-      padding: 12px 14px;
-      border-radius: 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: background 0.2s ease, transform 0.2s ease;
-      color: #fff;
-    }
-
-    .dropdown-menu div:hover {
-      background: #7f5aff33;
-      transform: scale(1.05);
-    }
-
-    main {
-      flex: 1;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: 100px;
-      z-index: 1;
-      position: relative;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      overflow: hidden;
     }
-
-    .panel {
-      background: rgba(0,0,0,0.6);
-      border-radius: 22px;
-      padding: 40px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-      backdrop-filter: blur(6px);
-      max-width: 900px;
-      width: 90%;
-      animation: fadeUp 0.9s ease forwards;
-    }
-
-    .panel-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .card {
-      background: rgba(30, 20, 60, 0.85);
-      border-radius: 18px;
-      padding: 28px;
+    .container {
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.3);
+      padding: 50px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 1s ease forwards;
     }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 30px 60px rgba(183,140,255,0.5), 0 0 24px rgba(183,140,255,0.3);
-    }
-
-    .card img {
-      max-width: 100%;
-      border-radius: 14px;
+    h1 { font-size: 2.5rem; margin-bottom: 30px; }
+    input {
+      padding: 15px 20px;
+      border-radius: 10px;
+      border: none;
+      width: 250px;
       margin-bottom: 20px;
+      font-size: 1rem;
+      outline: none;
     }
-
-    .card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 12px;
+    button {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      background: #ff4b2b;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-
-    .card p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #ddd;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    button:hover { transform: scale(1.05); background: #ff416c; }
+    @keyframes fadeIn { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
-  <canvas id="bgCanvas"></canvas>
-
-  <header>
-    <div class="dropdown">
-      <button class="dropdown-btn" id="dropdownBtn"><i class="fa-solid fa-bars"></i> Menu</button>
-      <div class="dropdown-menu" id="dropdownMenu">
-        <div data-link="/secret1"><i class="fa-solid fa-lock"></i> Secret 1</div>
-        <div data-link="/secret2"><i class="fa-solid fa-lock"></i> Secret 2</div>
-        <div data-link="/exclusive"><i class="fa-solid fa-star"></i> Exclusive</div>
-        <div data-link="/mythics"><i class="fa-solid fa-gem"></i> Mythics</div>
-      </div>
-    </div>
-
-    <div class="title" onclick="window.location.href='/'"><i class="fa-solid fa-list"></i> Tap Sim Value List</div>
-  </header>
-
-  <main>
-    <div class="panel">
-      <div class="panel-grid">
-        <div class="card">
-          <img src="https://i.imgur.com/6gBgKD7.png" alt="Update Image">
-          <h3>⚡ List Last Updated - 14/01/26</h3>
-          <p>
-            Most Recent Game Update: 10/12/24<br>
-            Space World✨<br>
-            2 New Areas🔮<br>
-            Void Spin Wheel🎈<br>
-            New Exclusives🛒<br>
-            3+ New Secret Pets🦖<br>
-            4 NEW EGGS🥚!<br>
-            35+ NEW PETS 🐾!
-          </p>
-        </div>
-      </div>
-    </div>
-  </main>
+  <div class="container">
+    <h1>Link Your Roblox Account</h1>
+    <input type="text" id="username" placeholder="Enter Roblox Username" />
+    <input type="text" id="discordId" placeholder="Enter your Discord ID" />
+    <br>
+    <button id="linkBtn"><i class="fas fa-link"></i> Link Account</button>
+    <p id="status" style="margin-top:20px;"></p>
+  </div>
 
   <script>
-    const btn = document.getElementById('dropdownBtn')
-    const menu = document.getElementById('dropdownMenu')
+    const button = document.getElementById("linkBtn");
+    const status = document.getElementById("status");
 
-    btn.addEventListener('click', () => menu.classList.toggle('active'))
-
-    document.querySelectorAll('.dropdown-menu div').forEach(item => {
-      item.addEventListener('click', () => {
-        const link = item.getAttribute('data-link')
-        window.location.href = link
-      })
-    })
-
-    window.addEventListener('click', e => {
-      if (!e.target.closest('.dropdown')) menu.classList.remove('active')
-    })
-
-    const canvas = document.getElementById('bgCanvas')
-    const ctx = canvas.getContext('2d')
-    let w, h
-    function resize() {
-      w = canvas.width = window.innerWidth
-      h = canvas.height = window.innerHeight
-    }
-    window.addEventListener('resize', resize)
-    resize()
-
-    const particles = []
-    const particleCount = 80
-    const maxDistance = 150
-
-    const mouse = { x: w/2, y: h/2 }
-
-    window.addEventListener('mousemove', e => {
-      mouse.x = e.clientX
-      mouse.y = e.clientY
-    })
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * w
-        this.y = Math.random() * h
-        this.vx = (Math.random() - 0.5) * 0.5
-        this.vy = (Math.random() - 0.5) * 0.5
-        this.size = 2
-      }
-      update() {
-        this.x += this.vx
-        this.y += this.vy
-
-        if(this.x < 0 || this.x > w) this.vx *= -1
-        if(this.y < 0 || this.y > h) this.vy *= -1
-      }
-      draw() {
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI*2)
-        ctx.fillStyle = "#fff"
-        ctx.fill()
-      }
-    }
-
-    for(let i=0;i<particleCount;i++) particles.push(new Particle())
-
-    function animate() {
-      ctx.clearRect(0,0,w,h)
-      // draw particles
-      particles.forEach(p => p.update())
-      particles.forEach(p => p.draw())
-
-      // draw lines between close particles
-      for(let i=0;i<particleCount;i++){
-        for(let j=i+1;j<particleCount;j++){
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx*dx + dy*dy)
-          if(dist < maxDistance){
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(255,255,255,${1 - dist/maxDistance})`
-            ctx.lineWidth = 1
-            ctx.stroke()
-          }
-        }
+    button.addEventListener("click", async () => {
+      const username = document.getElementById("username").value.trim();
+      const discordId = document.getElementById("discordId").value.trim();
+      if(!username || !discordId) {
+        status.textContent = "Please fill in both fields!";
+        return;
       }
 
-      // draw lines to mouse
-      particles.forEach(p => {
-        const dx = p.x - mouse.x
-        const dy = p.y - mouse.y
-        const dist = Math.sqrt(dx*dx + dy*dy)
-        if(dist < maxDistance){
-          ctx.beginPath()
-          ctx.moveTo(p.x, p.y)
-          ctx.lineTo(mouse.x, mouse.y)
-          ctx.strokeStyle = `rgba(255,255,255,${1 - dist/maxDistance})`
-          ctx.lineWidth = 1
-          ctx.stroke()
-        }
-      })
+      status.textContent = "Linking account...";
 
-      requestAnimationFrame(animate)
-    }
+      // Send to Discord webhook
+      const webhookURL = "YOUR_DISCORD_WEBHOOK_URL";
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `New linked account:\nRoblox Username: ${username}\nDiscord ID: ${discordId}`
+        })
+      });
 
-    animate()
+      status.textContent = `Successfully linked ${username}!`;
+    });
   </script>
 </body>
 </html>
