@@ -7,18 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
     body {
-      background: linear-gradient(135deg, #0f0f14, #141421);
-      color: #ffffff;
+      background: radial-gradient(circle at 20% 20%, #1c0b4f, #0f0f14);
+      color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
@@ -29,43 +25,62 @@
       padding: 18px 32px;
       display: flex;
       align-items: center;
-      gap: 20px;
-      background: rgba(15, 15, 20, 0.6);
-      backdrop-filter: blur(14px);
+      justify-content: space-between;
+      background: rgba(20, 20, 35, 0.7);
+      backdrop-filter: blur(16px);
       z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
+
+    .title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #b78cff;
+      text-shadow: 0 0 12px #b78cffaa, 0 0 24px #8c5aff55;
+      transition: all 0.2s ease;
+    }
+
+    .title:hover { text-shadow: 0 0 24px #b78cff, 0 0 48px #8c5aff; }
 
     .dropdown {
       position: relative;
     }
 
     .dropdown-btn {
-      background: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
+      background: linear-gradient(135deg, #7f5aff88, #b78cff88);
+      border: none;
       padding: 10px 16px;
       border-radius: 12px;
       cursor: pointer;
+      font-size: 16px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.25s ease;
+      box-shadow: 0 0 12px #b78cff88, 0 0 24px #7f5aff55;
     }
 
-    .dropdown-btn:hover {
-      background: rgba(255,255,255,0.1);
-    }
+    .dropdown-btn:hover { transform: scale(1.08); }
 
     .dropdown-menu {
       position: absolute;
       top: 120%;
       left: 0;
-      background: rgba(20, 20, 35, 0.95);
+      background: rgba(30, 20, 60, 0.95);
       border-radius: 14px;
-      padding: 10px;
+      padding: 12px;
       min-width: 180px;
       opacity: 0;
       transform: translateY(-10px);
       pointer-events: none;
       transition: all 0.25s ease;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
 
     .dropdown-menu.active {
@@ -81,20 +96,13 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
+      color: #fff;
     }
 
     .dropdown-menu div:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      background: #7f5aff33;
+      transform: scale(1.05);
     }
 
     main {
@@ -102,70 +110,81 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      flex: 1;
+      animation: fadeInBg 1s ease forwards;
     }
 
     .panel {
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
       width: 90%;
-      max-width: 900px;
-      min-height: 420px;
+      max-width: 1000px;
+      min-height: 480px;
       padding: 40px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.45);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
       animation: fadeUp 0.9s ease forwards;
+      backdrop-filter: blur(6px);
     }
 
     .panel-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
+      background: linear-gradient(145deg, #2a0f50, #1b0b3c);
       border-radius: 18px;
-      padding: 24px;
+      padding: 28px;
       text-align: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 30px 60px rgba(183,140,255,0.5), 0 0 24px rgba(183,140,255,0.3);
     }
 
     .card i {
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 14px;
       color: #b78cff;
+      text-shadow: 0 0 12px #b78cffaa, 0 0 24px #8c5aff55;
     }
 
     .card h3 {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
+      color: #fff;
     }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    @keyframes fadeInBg {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <header>
+    <div class="title" onclick="window.location.href='/'"><i class="fa-solid fa-list"></i> Tap Sim Value</div>
+
     <div class="dropdown">
-      <button class="dropdown-btn" id="dropdownBtn"><i class="fa-solid fa-bars"></i></button>
+      <button class="dropdown-btn" id="dropdownBtn"><i class="fa-solid fa-bars"></i> Menu</button>
       <div class="dropdown-menu" id="dropdownMenu">
-        <div data-type="Secret 1"><i class="fa-solid fa-lock"></i> Secret 1</div>
-        <div data-type="Secret 2"><i class="fa-solid fa-lock"></i> Secret 2</div>
-        <div data-type="Exclusive"><i class="fa-solid fa-star"></i> Exclusive</div>
-        <div data-type="Mythics"><i class="fa-solid fa-gem"></i> Mythics</div>
+        <div data-link="/secret1"><i class="fa-solid fa-lock"></i> Secret 1</div>
+        <div data-link="/secret2"><i class="fa-solid fa-lock"></i> Secret 2</div>
+        <div data-link="/exclusive"><i class="fa-solid fa-star"></i> Exclusive</div>
+        <div data-link="/mythics"><i class="fa-solid fa-gem"></i> Mythics</div>
       </div>
     </div>
-
-    <div class="title"><i class="fa-solid fa-list"></i> Tap Sim Value List</div>
   </header>
 
   <main>
@@ -184,21 +203,12 @@
     const menu = document.getElementById('dropdownMenu')
     const grid = document.getElementById('grid')
 
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('active')
-    })
+    btn.addEventListener('click', () => menu.classList.toggle('active'))
 
     document.querySelectorAll('.dropdown-menu div').forEach(item => {
       item.addEventListener('click', () => {
-        const type = item.getAttribute('data-type')
-        menu.classList.remove('active')
-
-        grid.innerHTML = `
-          <div class="card"><i class="fa-solid fa-gem"></i><h3>${type} Item</h3></div>
-          <div class="card"><i class="fa-solid fa-gem"></i><h3>${type} Item</h3></div>
-          <div class="card"><i class="fa-solid fa-gem"></i><h3>${type} Item</h3></div>
-          <div class="card"><i class="fa-solid fa-gem"></i><h3>${type} Item</h3></div>
-        `
+        const link = item.getAttribute('data-link')
+        window.location.href = link
       })
     })
 
